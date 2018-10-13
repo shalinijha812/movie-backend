@@ -6,6 +6,7 @@ import com.stackroute.movieservice.exception.MovieNotFoundException;
 import com.stackroute.movieservice.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,12 @@ import java.util.List;
 @Primary
 @Qualifier("implementation1")
 public class MovieServiceImpl implements MovieService{
-
+    @Value("${movieservice.service.exceptionmsg1}")
+    private String exceptionmsg1;
+    @Value("${movieservice.service.exceptionmsg2}")
+    private String exceptionmsg2;
+    @Value("${movieservice.service.successmsg}")
+    private String successmsg;
     private MovieRepository movieRepository;
     @Autowired
     public MovieServiceImpl(MovieRepository movieRepository) {
@@ -25,12 +31,12 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public Movie insertMovie(Movie movie) throws MovieAlreadyExistsException {
         if (movieRepository.existsById(movie.getId())) {
-            throw new MovieAlreadyExistsException("movie already exists");
+            throw new MovieAlreadyExistsException(exceptionmsg1);
         }
 
         Movie insertdMovie = movieRepository.insert(movie);
         if (insertdMovie == null) {
-            throw new MovieAlreadyExistsException("movie already exists");
+            throw new MovieAlreadyExistsException(exceptionmsg1);
         }
         return insertdMovie;
     }
@@ -67,7 +73,7 @@ public class MovieServiceImpl implements MovieService{
 
            }
            else
-               throw new MovieNotFoundException("Movie not found");
+               throw new MovieNotFoundException(exceptionmsg2);
 
 
     }
@@ -77,9 +83,9 @@ public class MovieServiceImpl implements MovieService{
             if (movieRepository.existsById(id))
             {
                 movieRepository.deleteById(id);
-                return "Succesfully deleted";
+                return successmsg;
             } else
-                throw new MovieNotFoundException("Movie Not Found");
+                throw new MovieNotFoundException(exceptionmsg2);
     }
 
 
@@ -97,7 +103,7 @@ public class MovieServiceImpl implements MovieService{
 
                 return searchedMovie;
             } else
-                throw new MovieNotFoundException("Movie Not Found");
+                throw new MovieNotFoundException(exceptionmsg2);
 
     }
 }

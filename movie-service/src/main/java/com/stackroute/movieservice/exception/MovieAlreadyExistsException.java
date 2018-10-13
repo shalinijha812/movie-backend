@@ -1,10 +1,10 @@
 package com.stackroute.movieservice.exception;
 
 public class MovieAlreadyExistsException extends Exception {
-    private String message;
+    private String MovieAlreadymessage;
     public MovieAlreadyExistsException(){};
 
-    public MovieAlreadyExistsException(String message){super(message);
-    this.message=message;
+    public MovieAlreadyExistsException(String MovieAlreadymessage){super(MovieAlreadymessage);
+    this.MovieAlreadymessage=MovieAlreadymessage;
     }
 }

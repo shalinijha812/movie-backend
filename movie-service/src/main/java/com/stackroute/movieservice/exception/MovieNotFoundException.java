@@ -1,11 +1,11 @@
 package com.stackroute.movieservice.exception;
 
 public class MovieNotFoundException extends Exception{
-    private String message;
+    private String movieNotFoundMessage;
     public MovieNotFoundException(){};
 
-    public MovieNotFoundException(String message) {
-        super(message);
-        this.message = message;
+    public MovieNotFoundException(String movieNotFoundMessage) {
+        super(movieNotFoundMessage);
+        this.movieNotFoundMessage = movieNotFoundMessage;
     }
 }

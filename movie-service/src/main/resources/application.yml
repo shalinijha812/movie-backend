@@ -12,3 +12,8 @@
 #            ddl-auto: create
 #        openInView: false
 #        show_sql: true
+movieservice:
+  service:
+    exceptionmsg1: "Movie Already Exists"
+    exceptionmsg2: "Movie NotFound"
+    successmsg: "Successfully deleted"
