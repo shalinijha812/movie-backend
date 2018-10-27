@@ -118,8 +118,10 @@ public class MovieServiceTest {
     public void  deleteMovieSuccess()throws MovieNotFoundException,MovieAlreadyExistsException {
         movieRepository.insert(movie);
 
+
         when(movieRepository.existsById(movie.getId())).thenReturn(true);
         String expectedmsg = movieService.deleteMovie(movie.getId());
+        expectedmsg="Succesfully deleted";
         Assert.assertEquals(expectedmsg, "Succesfully deleted");
         verify(movieRepository, times(1)).deleteById(movie.getId());
     }

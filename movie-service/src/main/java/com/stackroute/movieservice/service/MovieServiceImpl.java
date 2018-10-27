@@ -68,7 +68,7 @@ public class MovieServiceImpl implements MovieService{
            if (movieRepository.existsById(id)) {
                Movie updatedMovie = movieRepository.findById(id).get();
                updatedMovie.setComments(comments);
-               Movie updatedInsertdMovie = movieRepository.insert(updatedMovie);
+               Movie updatedInsertdMovie = movieRepository.save(updatedMovie);
                return updatedInsertdMovie;
 
            }
